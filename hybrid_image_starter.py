@@ -30,44 +30,33 @@ def hybrid_image(im1, im2, s1, s2):
   lowPass_im1 = cv.GaussianBlur(im1, (k1, k1), sigmaX=s1)
   highPass_im2 = im2 - cv.GaussianBlur(im2, (k2, k2), sigmaX=s2)
 
-  # ops.show(im2 - cv.GaussianBlur(im2, (101, 101), sigmaX=30), title="30")
-  # ops.show(im2 - cv.GaussianBlur(im2, (101, 101), sigmaX=20), title="20")
-  # ops.show(im2 - cv.GaussianBlur(im2, (101, 101), sigmaX=15), title="15")
-  # ops.show(im2 - cv.GaussianBlur(im2, (101, 101), sigmaX=10), title="10")
-  # ops.show(im2 - cv.GaussianBlur(im2, (101, 101), sigmaX=5), title="5")
-  # ops.show(im2 - cv.GaussianBlur(im2, (101, 101), sigmaX=1), title="1")
-
   k = 0.5
   return (lowPass_im1 * k) + (highPass_im2 * (1-k))
-
 
 def fft(input):
   return np.log(np.abs(np.fft.fftshift(np.fft.fft2(input))))
 
 ################### Part 1.2: Hybrid Images
-im1 = plt.imread('inputs/monkey.jpg')/255
-im2 = plt.imread('inputs/monkey_ste.JPG')/255
-
-
+im1 = plt.imread('inputs/alex.jpg')/255
+im2 = plt.imread('inputs/carol.jpg')/255
 sigma1 = 5
-sigma2 = 20
+sigma2 = 15
 
-# im1_aligned, im2_aligned = align()
-# im1_gray = cv.cvtColor((255*im1_aligned).astype(np.uint8), cv.COLOR_BGR2GRAY)/255
-# im2_gray = cv.cvtColor((255*im2_aligned).astype(np.uint8), cv.COLOR_BGR2GRAY)/255
-# hybrid = hybrid_image(im1_gray, im2_gray, sigma1, sigma2)
+#~~~~~~~~~ GRAYSCALE
+im1_aligned, im2_aligned = align()
+im1_gray = cv.cvtColor((255*im1_aligned).astype(np.uint8), cv.COLOR_BGR2GRAY)/255
+im2_gray = cv.cvtColor((255*im2_aligned).astype(np.uint8), cv.COLOR_BGR2GRAY)/255
+hybrid = hybrid_image(im1_gray, im2_gray, sigma1, sigma2)
 
-im1, im2 = align()
-BGR = [
-  hybrid_image(im1[:, :, 0], im2[:, :, 0], sigma1, sigma2),
-  hybrid_image(im1[:, :, 1], im2[:, :, 1], sigma1, sigma2),
-  hybrid_image(im1[:, :, 2], im2[:, :, 2], sigma1, sigma2)
-]
-hybrid = np.dstack(reversed(BGR))
+#~~~~~~~~~ COLOR
+# im1, im2 = align()
+# BGR = [
+#   hybrid_image(im1[:, :, 0], im2[:, :, 0], sigma1, sigma2),
+#   hybrid_image(im1[:, :, 1], im2[:, :, 1], sigma1, sigma2),
+#   hybrid_image(im1[:, :, 2], im2[:, :, 2], sigma1, sigma2)
+# ]
+# hybrid = np.dstack(reversed(BGR))
 
-# ops.show(im1, title='im1')
-# ops.show(im1_gray, title='im1_gray')
-# ops.show(im1_aligned, title='im1_aligned')
 ops.show(hybrid, title='hybrid')
 
 # compute and display the 2D Fourier transform
