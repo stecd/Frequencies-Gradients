@@ -22,8 +22,11 @@ def part1_1():
   ops.save((img*255).astype(np.uint64), 'outputs/alcatraz.jpg')
 
 
+# def part1_2():
+
+
 def init():
   part1_1()
-
+  # part1_2()
 
 init()

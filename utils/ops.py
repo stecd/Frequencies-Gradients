@@ -31,7 +31,8 @@ def show(X, dismiss='any', **kwargs):
     cv.imshow(title, X)
     key = cv.waitKey()
 
-    while key != ord(dismiss) and dismiss != 'any':
+    print(dismiss)
+    while dismiss != 'any' and key != ord(dismiss):
         key = cv.waitKey()
 
     if not persist:
