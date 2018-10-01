@@ -56,6 +56,7 @@ def stackColor(X, levels, mode: StackMode, sigma):
     return l
 
 def greyScale():
+    global N
     img = plt.imread('inputs/lincoln.jpg')
     img = cv.cvtColor(img, cv.COLOR_BGR2GRAY) / 255
 
@@ -82,6 +83,3 @@ def greyScale():
 
 def init():
     greyScale()
-
-
-init()

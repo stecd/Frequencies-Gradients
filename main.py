@@ -1,6 +1,8 @@
 import numpy as np
 import cv2 as cv
 import utils.ops as ops
+import hybrid_image as hybrid
+import stacks
 
 
 def unsharp(img, bimg, alpha=0.9 ):
@@ -21,12 +23,15 @@ def part1_1():
   ops.save((sharp_img*255).astype(np.uint64), 'outputs/alcatraz_sharp_p9.jpg')
   ops.save((img*255).astype(np.uint64), 'outputs/alcatraz.jpg')
 
+def part1_2():
+    hybrid.init()
 
-# def part1_2():
-
+def part1_3():
+    stacks.init()
 
 def init():
-  part1_1()
+  # part1_1()
   # part1_2()
+  part1_3()
 
 init()
