@@ -24,8 +24,9 @@ class Logger:
 
 
 class Profiler:
-    def __init__(self, logger=print):
-        self.logger = logger
+    def __init__(self, **kwargs):
+        self.logger = kwargs.get('logger', print)
+        self.label = kwargs.get('label', '')
         self.info = [None] * 3
 
     def __enter__(self):
@@ -37,4 +38,5 @@ class Profiler:
         self.info[2] = self.info[1] - self.info[0]
 
         if self.logger:
-            self.logger('[profiler] elapsed: {}'.format(self.info[2]))
+            label = ': {}'.format(self.label) if self.label else ''
+            self.logger('[profiler{}] elapsed: {}'.format(label, self.info[2]))

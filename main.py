@@ -4,6 +4,7 @@ import utils.ops as ops
 import hybrid_image as hybrid
 import stacks
 import blend
+import gradient
 
 
 def unsharp(img, bimg, alpha=0.9 ):
@@ -33,11 +34,14 @@ def part1_3():
 def part1_4():
     blend.init()
 
+def part2_1():
+    gradient.init()
+
 def init():
   # part1_1()
   # part1_2()
   # part1_3()
-  part1_4()
-
+  # part1_4()
+    part2_1()
 
 init()
