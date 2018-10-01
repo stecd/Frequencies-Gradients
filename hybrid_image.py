@@ -31,9 +31,9 @@ def plotFFTShowAll(im1_gray, im2_gray, hybrid, sigma1, sigma2):
 def hybrid_image(im1, im2, s1, s2):
     # k1, k2 = 4 * s1 + 1, 4 * s2 + 1
     # k1, k2 = int((20*s1-7)/3), int((20*s2-7)/3)
-    k1, k2 = 101, 200
-    lowPass_im1 = cv.GaussianBlur(im1, (k1, k1), sigmaX=s1)
-    highPass_im2 = im2 - cv.GaussianBlur(im2, (k2, k2), sigmaX=s2)
+    k1, k2 = s1, s2
+    lowPass_im1 = cv.GaussianBlur(im1, (k1, k1), sigmaX=0)
+    highPass_im2 = im2 - cv.GaussianBlur(im2, (k2, k2), sigmaX=0)
 
     k = 0.5
     return (lowPass_im1 * k) + (highPass_im2 * (1 - k))
@@ -46,8 +46,8 @@ def fft(data):
 def init():
     im1 = plt.imread('inputs/ste_sad.jpg') / 255
     im2 = plt.imread('inputs/ste_happy.jpg') / 255
-    sigma1 = 0
-    sigma2 = 0
+    sigma1 = 101
+    sigma2 = 201
 
     # # ~~~~~~~~~ GRAYSCALE
     # im1_aligned, im2_aligned = align(im1, im2)

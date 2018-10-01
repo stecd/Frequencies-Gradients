@@ -8,8 +8,10 @@ class StackMode:
     Gauss = 0
     Laplace = 1
 
-def stack(X, levels, mode: StackMode, sigma):
-    kSize = (4 * sigma + 1, 4 * sigma + 1)
+def stack(X, levels, mode: StackMode, kernel=0):
+    sigma = 0
+    kSize = (kernel, kernel)
+    # kSize = (4 * sigma + 1, 4 * sigma + 1)
 
     g = [X]
 
@@ -24,10 +26,13 @@ def stack(X, levels, mode: StackMode, sigma):
             l.append(g[i] - g[i + 1])
 
         l.append(g[-1])
-
-        return np.dstack(l)
+        l = np.array(l)
+        l = np.moveaxis(l, 0, -1)
+        return l
     else:
-        return np.dstack(g)
+        g = np.array(g)
+        g = np.moveaxis(g, 0, -1)
+        return g
 
 def stackColor(X, levels, mode: StackMode, sigma):
     kSize = tuple([4 * sigma + 1]) * 2
@@ -60,8 +65,8 @@ def greyScale():
     img = plt.imread('inputs/lincoln.jpg')
     img = cv.cvtColor(img, cv.COLOR_BGR2GRAY) / 255
 
-    G = stack(img, levels=N, mode=StackMode.Gauss, sigma=5)
-    L = stack(img, levels=N, mode=StackMode.Laplace, sigma=5)
+    G = stack(img, levels=N, mode=StackMode.Gauss, kernel=7)
+    L = stack(img, levels=N, mode=StackMode.Laplace, kernel=7)
 
     fig = plt.figure(figsize=(25, 7))
     fig.subplots_adjust(hspace=0.1, wspace=0.1)

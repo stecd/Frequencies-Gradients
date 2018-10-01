@@ -3,6 +3,7 @@ import cv2 as cv
 import utils.ops as ops
 import hybrid_image as hybrid
 import stacks
+import blend
 
 
 def unsharp(img, bimg, alpha=0.9 ):
@@ -29,9 +30,14 @@ def part1_2():
 def part1_3():
     stacks.init()
 
+def part1_4():
+    blend.init()
+
 def init():
   # part1_1()
   # part1_2()
-  part1_3()
+  # part1_3()
+  part1_4()
+
 
 init()
