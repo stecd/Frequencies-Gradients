@@ -15,13 +15,18 @@ Here is my website in case you want to see what else I do: www.cdste.com
 </head>
 <body>
 <br/>
-
 <div class="container">
     <h1>CS 194 Project 3</h1>
     <h2 class="title">Fun with Frequencies and Gradients!</h2>
     <h3 class="author">By Stephanie Claudino Daffara</h3>
+    <div class="hidden-thing"></div>
     <p>
-        bla bla bla some description
+        This project explores different methods of blending images by using frequencies and gradients. With frequencies
+        we are able to achieve hybrid images, where the image changes as you get closer and further away from th image.
+        We were also able to create smooth blends between two images by computing the Laplacian Stack of both images. With
+        Gradients we were able to create very well blended images, where the target image even takes on the colors from
+        the source image and gives the viewer a more natural look. These effects are accomplished through making use of the
+        nature of human perspective, and how we are more aware of gradients as oppose to intensity changes of a color.
     </p>
 
     <h2 class=".parts">Unsharp Masking</h2>
@@ -413,7 +418,7 @@ Here is my website in case you want to see what else I do: www.cdste.com
                     <img class="hover-image" src="images/1.4/dog_baby_mask.png" align="middle"/>
                     <div class="overlay-image">
                         <div class="text">
-                            <p>Orange and Apple original images.</p>
+                            <p>Doggy, Baby and mask</p>
                         </div>
                     </div>
                 </div>
@@ -421,8 +426,7 @@ Here is my website in case you want to see what else I do: www.cdste.com
                     <img class="hover-image" src="images/1.4/salsisha_babyeyes2.png" align="middle"/>
                     <div class="overlay-image">
                         <div class="text">
-                            <p>Orapple</p>
-                            <p>Blend of Orange and Apple.</p>
+                            <p>Blend of Doggy with Baby eyes.</p>
                         </div>
                     </div>
                 </div>
@@ -544,30 +548,26 @@ Here is my website in case you want to see what else I do: www.cdste.com
         <div class="row">
             <div class="column">
               <div class="img-box">
-                        <img class="hover-image" src="images/2.2/starry_sky_directPaste.png" align="middle"/>
+                    <img class="hover-image" src="images/2.2/starry_sky_directPaste.png" align="middle"/>
                         <div class="overlay-image">
                             <div class="text">
                                 <p>Palace of Fine arts under a starry sky</p>
                                 <p>Direct Copy and Paste</p>
                             </div>
                         </div>
-                    </div>
-                <div class="img-box">
+              </div>
+               <div class="img-box">
                     <img class="hover-image" src="images/2.2/starry_sky_result_3.png" align="middle"/>
                     <div class="overlay-image">
                         <div class="text">
                             <p>Palace of Fine arts under a starry sky</p>
                         </div>
                     </div>
-                </div>
+               </div>
             </div>
         </div>
+    </div>
     <p></p>
-</center>
-
-
-
-</div>
     <p>
         The picture on the left is a direct copy and paste using the formula: <code> Source * Mask + (1-Mask) * Target</code>.
         The final image <code>v</code>, the right side image, has direct copies of all the pixels from the target image (Starry Sky) at points
@@ -601,10 +601,226 @@ Here is my website in case you want to see what else I do: www.cdste.com
         colors or the Starry Night matching the palace colors. Depends on how realistic or "dreamy" you want the final
         result to look.
     </p>
+    <p>
+        Here are a couple results that I believe worked out well:
+    </p>
+    <div class="content--fullwidth bottom-padding-20 scaledown-3">
+        <div class="row">
+            <div class="column">
+                <div class="img-box">
+                    <img class="hover-image" src="images/2.2/pidgey_0002_flower.jpg" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Source image</p>
+                            <p>Flowers along Highway 1</p>
+                            <p>photographed by myself</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img class="hover-image" src="images/2.2/pidgey_0001_bird.jpg" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Target Image</p>
+                            <p>Hummingbird</p>
+                            <p>Pre-aligned to fit mask</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="img-box">
+                    <img class="hover-image" src="images/2.2/pidgey_0000_mask.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Mask</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content--fullwidth bottom-padding-20 scaledown fit">
+        <div class="row">
+            <div class="column">
+                <div class="img-box">
+                    <img class="hover-image" src="images/2.2/bird.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Bird</p>
+                            <p>Source: Hummingbird</p>
+                            <p>Target: Flowers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="content--fullwidth bottom-padding-20 scaledown-3">
+        <div class="row">
+            <div class="column">
+                <div class="img-box">
+                    <img class="hover-image" src="images/2.2/matisse_0002_man.jpg" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Source image</p>
+                            <p>Painting by Matisse</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img class="hover-image" src="images/2.2/matisse_0001_charles.jpg" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Target Image</p>
+                            <p>Charles Chaplin</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="img-box">
+                    <img class="hover-image" src="images/2.2/matisse_0000_mask.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Mask</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content--fullwidth bottom-padding-20 scaledown fit">
+        <div class="row">
+            <div class="column">
+                <div class="img-box">
+                    <img class="hover-image" src="images/2.2/matisse_charles.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Blend of prince in path</p>
+                            <p>Source: Path</p>
+                            <p>Target: Little Prince</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p>
+        Here is an example result that I'd consider failures:
+    </p>
+    <div class="content--fullwidth bottom-padding-20 scaledown-3">
+        <div class="row">
+            <div class="column">
+                <div class="img-box">
+                    <img class="hover-image" src="images/2.2/little_prince_0002_path.jpg" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Source image</p>
+                            <p>Path through camp trail</p>
+                            <p>photographed by myself</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img class="hover-image" src="images/2.2/little_prince_0001_prince.jpg" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Target Image</p>
+                            <p>Little Prince</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="img-box">
+                    <img class="hover-image" src="images/2.2/little_prince_0000_mask.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Mask</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content--fullwidth bottom-padding-20 scaledown fit">
+        <div class="row">
+            <div class="column">
+                <div class="img-box">
+                    <img class="hover-image" src="images/2.2/littlePrince_failed.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Blend of prince in path</p>
+                            <p>Source: Path</p>
+                            <p>Target: Little Prince</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p>
+       The blending of the little prince in the path failed because the gradients between the
+        tree portion versus the path portion is very different, resulting in the blend becoming
+        very different between the top and bottom portion of the prince.
+    </p>
+    <p>
+        In comparison with the Laplacian Pyramid blending technique, this one worked out usually a bit better,
+        and gave more realistic results. Here is a visual comparison:
+    </p>
+    <div class="content--fullwidth bottom-padding-20 fit">
+        <div class="row">
+            <div class="column">
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.4/dog_baby_mask.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Doggy, Baby and mask</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.4/salsisha_babyeyes2.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Laplacian Pyramid Blend</p>
+                            <p>Blend of Doggy with Baby eyes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content--fullwidth bottom-padding-20 scaledown">
+        <div class="row">
+            <div class="column">
+                <div class="img-box">
+                    <img class="hover-image" src="images/2.2/doggyblend_better.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Poisson Gradient Blending</p>
+                            <p>Blend of Doggy with Baby eyes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p>
+        Both of the results in this case look really good. I still believe that the Poisson blending
+        worked out a bit better. You can notice at the corner of the eyes, both the inner and
+        outer corners blend better in the Poisson blending than they do in the Laplacian blending.
+        I think both work out pretty well here because the doggy in the image has a light brown skin color,
+        which to some extent matches the babies skin color. If the dog were some other color then maybe the
+        Laplacian pyramid would not have worked as well since it would only be "feathering" the borders
+        as oppose to making the blend match the target image, as the Poisson blending does.
+    </p>
+    <p>
+        Since I was able to vectorize every single part of these functions, my code takes less than 5 seconds to compute
+        these image blends.
+    </p>
+    <center><p>❤</p></center>
 
 </div>
 
+</div>
 </body>
 </html>
 

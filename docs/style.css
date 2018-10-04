@@ -1,13 +1,21 @@
 
+.hidden-thing {
+  position: absolute;
+  left: 100%;
+  width: 50px;
+  height: 50px;
+  opacity: 0;
+}
+
 body {
-    width: 100%;
-    margin: auto;
+     margin: auto;
     text-align: left;
     color: #121212;
     font-size: 11pt;
     font-family: 'Open Sans', sans-serif;
     font-style: normal;
     font-weight: 400;
+    overflow-x: hidden;
 }
 
 h1, h2, h3, h4 {
@@ -30,6 +38,8 @@ div.padded {
         minmax(0, 700px)
         minmax(1em, 1fr)
     ;
+    overflow-x: hidden;
+
 }
 
 .container > * {
@@ -95,6 +105,10 @@ h3 {
 
 .space {
     width: 50px;
+}
+
+.to-fit img {
+    width: 200px;
 }
 
 

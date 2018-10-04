@@ -45,18 +45,6 @@ def gBlendMulti(S, T, M, mode, yxT=None):
 
 
 def gBlend(S, T, M, mode, **kwargs):
-    """
-    Gradient-Domain Image Blending
-    see http://cs.brown.edu/courses/csci1950-g/asgn/proj2/resources/PoissonImageEditing.pdf
-
-    :param S: source image.
-    :param T: target image.
-    :param M: binary mask delimiting the area of source to blend into target.
-    :param mode: 1 = Poisson, 2 = mixed gradients.
-    :param yxS: (optional) position in source from which to start blending.
-    :param yxT: (optional) position in target to which to blend (None => yxS).
-    :return: a blended image
-    """
     yS, xS = kwargs.get('yxS', (0, 0))
     yT, xT = kwargs.get('yxT', None) or yS, xS
     hS, wS = M.shape[0:2]
@@ -111,22 +99,21 @@ def gBlend(S, T, M, mode, **kwargs):
 
 def init():
 
-    with Profiler(label='mask'):
-        M = plt.imread('inputs/blends/sf_starry_mask2.png').astype(np.float)
-        S = ops.normalize(plt.imread('inputs/blends/sf_starry_sf.jpg'))
-        T = ops.normalize(plt.imread('inputs/blends/sf_starry_starry.jpg'))
+    M = plt.imread('inputs/blends/pidgey_0000_mask.png').astype(np.float)
+    S = ops.normalize(plt.imread('inputs/blends/pidgey_0001_bird.jpg'))
+    T = ops.normalize(plt.imread('inputs/blends/pidgey_0002_flower.jpg'))
 
-        X = S * M + (1-M) * T
+    # X = S * M + (1-M) * T
 
-        # B = gBlend(S[:, :, 0], T[:, :, 0], M[:, :, 0], mode=1)
-        # G = gBlend(S[:, :, 1], T[:, :, 1], M[:, :, 1], mode=1)
-        # R = gBlend(S[:, :, 2], T[:, :, 2], M[:, :, 2], mode=1)
+    B = gBlend(S[:, :, 0], T[:, :, 0], M[:, :, 0], mode=1)
+    G = gBlend(S[:, :, 1], T[:, :, 1], M[:, :, 1], mode=1)
+    R = gBlend(S[:, :, 2], T[:, :, 2], M[:, :, 2], mode=1)
 
-        B = X[:,:,0]
-        G = X[:,:,1]
-        R = X[:,:,2]
+    # B = X[:,:,0]
+    # G = X[:,:,1]
+    # R = X[:,:,2]
 
-        X = np.dstack([R, G, B])
-        cv.imshow('', X)
-        cv.waitKey()
+    X = np.dstack([R, G, B])
+    cv.imshow('', X)
+    cv.waitKey()
 
