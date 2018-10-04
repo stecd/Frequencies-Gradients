@@ -17,10 +17,10 @@ def plotShow(data):
     plt.show()
 
 
-def plotFFTShowAll(im1_gray, im2_gray, hybrid, sigma1, sigma2):
+def plotFFTShowAll(im1_gray, im2_gray, hybrid, val1, val2):
     #compute and display all the 2D Fourier transforms
-    lowPass = cv.GaussianBlur(im1_gray, (35, 35), sigmaX=sigma1)
-    highPass = im2_gray - cv.GaussianBlur(im2_gray, (35, 35), sigmaX=sigma1)
+    lowPass = cv.GaussianBlur(im1_gray, (val1, val2), sigmaX=0)
+    highPass = im2_gray - cv.GaussianBlur(im2_gray, (val1, val2), sigmaX=0)
     plotShow(fft(im1_gray))
     plotShow(fft(im2_gray))
     plotShow(fft(lowPass))
@@ -28,15 +28,15 @@ def plotFFTShowAll(im1_gray, im2_gray, hybrid, sigma1, sigma2):
     plotShow(fft(hybrid))
 
 
-def hybrid_image(im1, im2, s1, s2):
+def hybrid_image(highPass, lowPass, val1, val2):
     # k1, k2 = 4 * s1 + 1, 4 * s2 + 1
     # k1, k2 = int((20*s1-7)/3), int((20*s2-7)/3)
-    k1, k2 = s1, s2
-    lowPass_im1 = cv.GaussianBlur(im1, (k1, k1), sigmaX=0)
-    highPass_im2 = im2 - cv.GaussianBlur(im2, (k2, k2), sigmaX=0)
+    k1, k2 = val1, val2
+    lowPass_im = cv.GaussianBlur(lowPass, (k1, k1), sigmaX=0)
+    highPass_im = highPass - cv.GaussianBlur(highPass, (k2, k2), sigmaX=0)
 
     k = 0.5
-    return (lowPass_im1 * k) + (highPass_im2 * (1 - k))
+    return (lowPass_im * k) + (highPass_im * (1 - k))
 
 
 def fft(data):
@@ -44,33 +44,44 @@ def fft(data):
 
 
 def init():
-    im1 = plt.imread('inputs/ste_sad.jpg') / 255
-    im2 = plt.imread('inputs/ste_happy.jpg') / 255
-    sigma1 = 101
-    sigma2 = 201
+    im1 = plt.imread('inputs/monkey.jpg')
+    im2 = plt.imread('inputs/monkey_ste.JPG')
+    k1 = 29 # MUST BE ODD
+    k2 = 61 # MUST BE ODD
+    # im1, im2 = align(im1, im2)
 
     # # ~~~~~~~~~ GRAYSCALE
-    # im1_aligned, im2_aligned = align(im1, im2)
-    # im1_gray = cv.cvtColor((255*im1_aligned).astype(np.uint8), cv.COLOR_BGR2GRAY)/255
-    # im2_gray = cv.cvtColor((255*im2_aligned).astype(np.uint8), cv.COLOR_BGR2GRAY)/255
-    # hybrid = hybrid_image(im1_gray, im2_gray, sigma1, sigma2)
+    # im1_gray = cv.cvtColor((255*im1).astype(np.uint8), cv.COLOR_BGR2GRAY)/255
+    # im2_gray = cv.cvtColor((255*im2).astype(np.uint8), cv.COLOR_BGR2GRAY)/255
+    # hybrid = hybrid_image(highPass=im1_gray, lowPass=im2_gray, val1=k1, val2=k2)
 
     # ~~~~~~~~~ COLOR
-    # im1, im2 = align(im1, im2)
     # BGR = [
-    #   hybrid_image(im1[:, :, 0], im2[:, :, 0], sigma1, sigma2),
-    #   hybrid_image(im1[:, :, 1], im2[:, :, 1], sigma1, sigma2),
-    #   hybrid_image(im1[:, :, 2], im2[:, :, 2], sigma1, sigma2)
+    #   hybrid_image(im1[:, :, 0], im2[:, :, 0], k1, k2),
+    #   hybrid_image(im1[:, :, 1], im2[:, :, 1], k1, k2),
+    #   hybrid_image(im1[:, :, 2], im2[:, :, 2], k1, k2)
     # ]
 
-    # ~~~~~~~~~ COLOR+bw - only higher freq layer color.
-    im1_gray = cv.cvtColor((255*im1).astype(np.uint8), cv.COLOR_BGR2GRAY)/255
-    BGR = [
-      hybrid_image(im1_gray, im2[:, :, 0], sigma1, sigma2),
-      hybrid_image(im1_gray, im2[:, :, 1], sigma1, sigma2),
-      hybrid_image(im1_gray, im2[:, :, 2], sigma1, sigma2)
-    ]
+    # ~~~~~~~~~ COLOR+bw - only lower freq layer color.
+    # im1_aligned, im2_aligned = align(im1, im2)
+    # im1_gray = cv.cvtColor((255*im1_aligned).astype(np.uint8), cv.COLOR_BGR2GRAY)/255
+    # BGR = [
+    #   hybrid_image(im1_gray, im2_aligned[:, :, 0], k1, k2),
+    #   hybrid_image(im1_gray, im2_aligned[:, :, 1], k1, k2),
+    #   hybrid_image(im1_gray, im2_aligned[:, :, 2], k1, k2)
+    # ]
+    # hybrid = np.dstack(reversed(BGR))
 
+
+    # ~~~~~~~~~ COLOR+bw - only high freq layer color.
+    im1_aligned, im2_aligned = align(im1, im2)
+    im2_gray = cv.cvtColor((255*im2_aligned).astype(np.uint8), cv.COLOR_BGR2GRAY)/255
+    BGR = [
+      hybrid_image(im1_aligned[:, :, 0], im2_gray, k1, k2),
+      hybrid_image(im1_aligned[:, :, 1], im2_gray, k1, k2),
+      hybrid_image(im1_aligned[:, :, 2], im2_gray, k1, k2)
+    ]
     hybrid = np.dstack(reversed(BGR))
+
+    # plotFFTShowAll(im1_gray, im2_gray, hybrid, k1, k2)
     ops.show(hybrid, title='hybrid')
-    # plotFFTShowAll(im1_gray, im2_gray, hybrid, sigma1, sigma2)

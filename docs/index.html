@@ -1,0 +1,610 @@
+<!-------------------------------------
+Hello there, I see you're interested in my code.
+Well, just so you know this website was written in 100% html and css. No templates, javascript, or anything fancy.
+I could make it a template though...
+Here is my website in case you want to see what else I do: www.cdste.com
+-------------------------------------->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Stephanie Claudino Daffara| CS 194</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css" media="screen"/>
+</head>
+<body>
+<br/>
+
+<div class="container">
+    <h1>CS 194 Project 3</h1>
+    <h2 class="title">Fun with Frequencies and Gradients!</h2>
+    <h3 class="author">By Stephanie Claudino Daffara</h3>
+    <p>
+        bla bla bla some description
+    </p>
+
+    <h2 class=".parts">Unsharp Masking</h2>
+    <p>
+        Here are some example images of using the unsharp masking technique. To implement this I simply followed
+        the equation:
+    </p>
+
+    <center><code align="middle">image + alpha (image - blurred_image)</code></center>
+
+    <div class="content--fullwidth bottom-padding-20">
+        <div class="row">
+            <div class="column">
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.1/lena.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>image</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.1/lena_blurred.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>blurred_image</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.1/lena_sharp_ap8.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>solution using alpha = 8</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p>
+        The famous Lenna image above shows my process of applying the unsharp equation. Below is another example
+        using my own photograph of Alcatraz.
+    </p>
+    <div class="content--fullwidth bottom-padding-20 scaledown fit">
+        <div class="row">
+            <div class="column">
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.1/alcatraz.jpg" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>original image</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.1/alcatraz_sharp_p9.jpg" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>image with unsharp filter applied</p>
+                            <p>using alpha = 9</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class=".parts">Hybrid Images</h2>
+    <p>
+        This part of the project was based on
+        <a target="_blank" href="http://cvcl.mit.edu/publications/OlivaTorralb_Hybrid_Siggraph06.pdf">this paper</a>.
+        This "hybrid image" trick exploits human vision perceptual mechanisms, which is based on grouping like frequencies
+        which results in stable percepts at each distance. The following example images below were precomputed to contain
+        either only their low or high frequencies.
+    </p>
+    <div class="content--fullwidth bottom-padding-20 fit">
+        <div class="row">
+            <div class="column">
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.2/carol_alex_orig.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>original images</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.2/1_alexcarol_hybrid.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>hybrid image</p>
+                            <p>High Freq filter: Up close you see the boy</p>
+                            <p>Low Freq filter: Step back to see the girl</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p>
+        The Hybrid image above was created by filtering what frequencies each image displays. Since the operations are
+        defined in the Fourier domain, below I show a Fourier analysis:
+    </p>
+    <div class="content--fullwidth bottom-padding-20 scaledown-3">
+        <div class="row">
+            <div class="column">
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.2/1_carol_aligned.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Girl Image aligned</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.2/1_carol_ft.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Fourier Analysis of the girl image.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.2/1_alex_aligned.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Boy Image aligned</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.2/1_alex_ft.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Fourier Analysis of the boy Image.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.2/1_alex_highpass.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Boy image with high-pass filter.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.2/1_alex_hp_ft.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Fourier Analysis of the boy image</p>
+                            <p>with a high-pass filter.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.2/1_carol_lowpass.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Girl Image with a low-pass filter</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.2/1_carol_lp_ft.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Fourier Analysis of the girl image</p>
+                            <p>with a low-pass filter.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.2/1_alexcarol_hybrid.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Hybrid image.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.2/1_fft_hybrid.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Fourier Analysis of the hybrid image.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <p>
+        Finally I played around with coloring either both layers or just the low-pass or high-pass filtered image to test
+        which one would give me a better result. Here are what these images look like:
+    </p>
+
+    <div class="content--fullwidth bottom-padding-20 scaledown-3">
+            <div class="row">
+            <div class="column">
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.2/2_fullcolor_alexcarol.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Both images are colored.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.2/2_lowcolor_alexcarol.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Only the low-pass filtered image is colored.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.2/2_highcolor_alexcarol.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Only the high-pass filtered image is colored.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    <p>
+        Since color provides a strong grouping cue, I believe that placing it on either image simply enhances
+        that image more. In my case I believe that the 3rd image, the one where only the high-pass filtered image
+        is colorized, looks beter and more distinguishable from up close. But it is up to the user what image
+        they want to enhance. Below are a couple more examples:
+    </p>
+
+    <div class="content--fullwidth bottom-padding-20 scaledown-3">
+            <div class="row">
+            <div class="column">
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.2/ste_happy_sad_good_withHighPassColor2.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Happy up close, sad from a far.</p>
+                            <p>Color at high spacial freq.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.2/3_monkey.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Monkey up close, me from a far.</p>
+                            <p>Color at high spacial freq.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    <p>
+        And here are a couple of failed attempts. When I applied a low-pass filter to the monkey and high-pass to my
+        face, the hybrid image did not work as well. The monkey has many high frequencies that show up close and blended
+        with my face, instead of only showing my face. And the same logic goes for my face, where there were probably
+        a lot of low frequencies making it a better fit for the high-pass filter instead of low. The skeleton and
+        muscle structure hybrid also does not work that well. You can still see both images in both near and far
+        distances.
+    </p>
+    <div class="content--fullwidth bottom-padding-20 scaledown-3">
+        <div class="row">
+            <div class="column">
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.2/monekyste.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Colored both images</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.2/3_failure_skeleton.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Colored both images</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <h2 class=".parts">Gaussian and Laplacian Stacks</h2>
+    <p>
+        These stacks are similar to a pyramid except we are not down sampling at each level. In the following
+        images you can see the images at multiple resolutions, demonstrating the hybrid image moving from one
+        perspective to another.
+    </p>
+    <div class="content--fullwidth bottom-padding-20 scaledown scaledown-full fit">
+        <div class="row">
+            <div class="column">
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.3/lincoln.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Gaussian and Laplace stack stages.</p>
+                            <p>On Salvador Dali's painting of Lincoln.</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+               <div class="img-box">
+                    <img class="hover-image" src="images/1.3/ste_happy_sad_gaussian.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Gaussian and Laplace stack stages.</p>
+                            <p>On the happy and sad hybrid image I created.</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <h2 class=".parts">Multiresolution Blending</h2>
+    <p>
+        For this section I implemented seamless blending by using multi-resolution blending explained in
+        <a target="_blank", href="http://persci.mit.edu/pub_pdfs/spline83.pdf">this paper</a>
+        This type of blending uses images at separate image frequencies and blends them at each band, and
+        then adds them together. I was able to use my Laplace stack implemented from earlier, and apply it
+        to each image that I was trying to blend together, and make use of the Gaussian stack and applying it
+        to my mask image.
+    </p>
+    <p>
+        Here are some of the blends I created:
+    </p>
+
+    <div class="content--fullwidth bottom-padding-20 fit">
+        <div class="row">
+            <div class="column">
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.4/orange_apple.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Apple</p>
+                            <p>Orange</p>
+                            <p>Mask applied</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.4/orapple.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Orapple</p>
+                            <p>Blend of Orange and Apple.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content--fullwidth bottom-padding-20 fit">
+        <div class="row">
+            <div class="column">
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.4/dog_baby_mask.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Orange and Apple original images.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.4/salsisha_babyeyes2.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Orapple</p>
+                            <p>Blend of Orange and Apple.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content--fullwidth bottom-padding-20 fit">
+        <div class="row">
+            <div class="column">
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.4/ste_butter_tattoo.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Me, Butterfly Tattoo, Mask.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img class="hover-image" src="images/1.4/ste_tattoo2.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Me with a Butterfly Tattoo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <h2 class=".parts">Toy Problem: </h2>
+    <p>
+        The toy problem's task was to reconstruct an image based on it's x and y gradient information
+        and a bias (which in our case was simply the top left corner of the image). Most of the time this method
+        is better than using frequency domains or gaussian stacks in order to blend images because human's perceive
+        the change from one intensity to another as oppose to the overall intensity itself.
+    </p>
+    <p>
+        Back to the toy problem, n order to reconstruct
+        the image I created an objective function that solved the following constraints using least squares:
+    </p>
+    <ul>
+        <li>the x-gradients of v should closely match the x-gradients of s</li>
+        <li>the y-gradients of v should closely match the y-gradients of s</li>
+        <li>The top left corners of the two images should be the same color</li>
+    </ul>
+    <p> where v is the reconstructed image, and s is the source image. Once I solved for v I got the following
+    image:</p>
+    <div class="content--fullwidth bottom-padding-20 scaledown-3">
+        <div class="row">
+            <div class="column">
+                <div class="img-box">
+                    <img class="hover-image" src="images/2.1/toy_problem.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Original Image</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img class="hover-image" src="images/2.1/buzz_2p78seconds.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Reconstructed image v.</p>
+                            <p>2.78 seconds</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p>
+        Note that because I vectorized this entire problem using numpy's matrix properperties, I was able to
+        complete this reconstruction in less than 3 seconds.
+    </p>
+
+    <h2 class=".parts">Poisson Blending: </h2>
+    <p>
+        With the same logic as in the toy problem, here we are optimizing the gradients between two images along
+        their shared pixels. We solve the blending constraints with the following formula:
+    </p>
+    <center><img src="images/2.2/formula.png" align="middle"/></center>
+    <div class="content--fullwidth bottom-padding-20 scaledown-3">
+        <div class="row">
+            <div class="column">
+                <div class="img-box">
+                    <img class="hover-image" src="images/2.2/sf_starry_sf.jpg" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Source image</p>
+                            <p>Palace of Fine Arts in San Francisco</p>
+                            <p>photographed by myself</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img class="hover-image" src="images/2.2/sf_starry_starry.jpg" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Target Image</p>
+                            <p>Starry Night painting</p>
+                            <p>Pre-aligned to fit mask</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="img-box">
+                    <img class="hover-image" src="images/2.2/sf_starry_mask.jpg" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Mask</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content--fullwidth bottom-padding-20 scaledown fit">
+        <div class="row">
+            <div class="column">
+              <div class="img-box">
+                        <img class="hover-image" src="images/2.2/starry_sky_directPaste.png" align="middle"/>
+                        <div class="overlay-image">
+                            <div class="text">
+                                <p>Palace of Fine arts under a starry sky</p>
+                                <p>Direct Copy and Paste</p>
+                            </div>
+                        </div>
+                    </div>
+                <div class="img-box">
+                    <img class="hover-image" src="images/2.2/starry_sky_result_3.png" align="middle"/>
+                    <div class="overlay-image">
+                        <div class="text">
+                            <p>Palace of Fine arts under a starry sky</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <p></p>
+</center>
+
+
+
+</div>
+    <p>
+        The picture on the left is a direct copy and paste using the formula: <code> Source * Mask + (1-Mask) * Target</code>.
+        The final image <code>v</code>, the right side image, has direct copies of all the pixels from the target image (Starry Sky) at points
+        outside the region (black area in mask). The pixels that fill up the selected masked region are calculated
+        by solving the optimization problem that minimizes the gradient values from the source image and its
+        boundary pixels. This way the colors in the final pixels from the source image get closer to those from the
+        target image, creating an illusion and very realistic blend.
+
+    </p>
+    <p>
+        I played around with inverting the mask and swapping the source and target images and got the following result:
+    </p>
+        <div class="content--fullwidth bottom-padding-20 scaledown fit">
+            <div class="row">
+                <div class="column">
+                    <div class="img-box">
+                        <img class="hover-image" src="images/2.2/starry_sky_result_2.png" align="middle"/>
+                        <div class="overlay-image">
+                            <div class="text">
+                                <p>Palace of Fine arts under a starry sky</p>
+                                <p>Source: starry sky</p>
+                                <p>Target: Palace</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <p>
+        I like the first result better, but it's really up to you whether you like the Palace matching the Starry Night
+        colors or the Starry Night matching the palace colors. Depends on how realistic or "dreamy" you want the final
+        result to look.
+    </p>
+
+
+</div>
+
+</body>
+</html>
+

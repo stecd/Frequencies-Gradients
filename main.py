@@ -5,6 +5,7 @@ import hybrid_image as hybrid
 import stacks
 import blend
 import gradient
+import poisson
 
 
 def unsharp(img, bimg, alpha=0.9 ):
@@ -37,11 +38,15 @@ def part1_4():
 def part2_1():
     gradient.init()
 
+def part2_2():
+    poisson.init()
+
 def init():
   # part1_1()
   # part1_2()
   # part1_3()
   # part1_4()
-    part2_1()
+  # part2_1()
+  part2_2()
 
 init()
