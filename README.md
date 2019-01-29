@@ -1,6 +1,6 @@
 # Proj3:
-results [link](https://stecd.github.io/Frequencies-Gradients/index.html)
-original project [link](https://inst.eecs.berkeley.edu/~cs194-26/fa18/hw/proj3/index.html)
+You can find my results and written documentation [here](https://stecd.github.io/Frequencies-Gradients/index.html).
+The original assignment can be found [here](https://inst.eecs.berkeley.edu/~cs194-26/fa18/hw/proj3/index.html).
 
 
 ### Files:
