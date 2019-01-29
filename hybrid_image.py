@@ -56,11 +56,11 @@ def init():
     # hybrid = hybrid_image(highPass=im1_gray, lowPass=im2_gray, val1=k1, val2=k2)
 
     # ~~~~~~~~~ COLOR
-    # BGR = [
-    #   hybrid_image(im1[:, :, 0], im2[:, :, 0], k1, k2),
-    #   hybrid_image(im1[:, :, 1], im2[:, :, 1], k1, k2),
-    #   hybrid_image(im1[:, :, 2], im2[:, :, 2], k1, k2)
-    # ]
+    BGR = [
+      hybrid_image(im1[:, :, 0], im2[:, :, 0], k1, k2),
+      hybrid_image(im1[:, :, 1], im2[:, :, 1], k1, k2),
+      hybrid_image(im1[:, :, 2], im2[:, :, 2], k1, k2)
+    ]
 
     # ~~~~~~~~~ COLOR+bw - only lower freq layer color.
     # im1_aligned, im2_aligned = align(im1, im2)
@@ -74,13 +74,13 @@ def init():
 
 
     # ~~~~~~~~~ COLOR+bw - only high freq layer color.
-    im1_aligned, im2_aligned = align(im1, im2)
-    im2_gray = cv.cvtColor((255*im2_aligned).astype(np.uint8), cv.COLOR_BGR2GRAY)/255
-    BGR = [
-      hybrid_image(im1_aligned[:, :, 0], im2_gray, k1, k2),
-      hybrid_image(im1_aligned[:, :, 1], im2_gray, k1, k2),
-      hybrid_image(im1_aligned[:, :, 2], im2_gray, k1, k2)
-    ]
+    # im1_aligned, im2_aligned = align(im1, im2)
+    # im2_gray = cv.cvtColor((255*im2_aligned).astype(np.uint8), cv.COLOR_BGR2GRAY)/255
+    # BGR = [
+    #   hybrid_image(im1_aligned[:, :, 0], im2_gray, k1, k2),
+    #   hybrid_image(im1_aligned[:, :, 1], im2_gray, k1, k2),
+    #   hybrid_image(im1_aligned[:, :, 2], im2_gray, k1, k2)
+    # ]
     hybrid = np.dstack(reversed(BGR))
 
     # plotFFTShowAll(im1_gray, im2_gray, hybrid, k1, k2)
